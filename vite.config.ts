@@ -9,6 +9,14 @@ export default defineConfig(({ mode }) => ({
     host: "::",
     port: 8080,
   },
+  build: {
+    outDir: 'dist',
+    sourcemap: mode === 'development',
+  },
+  preview: {
+    port: 3000,
+    host: true,
+  },
   plugins: [
     react(),
     mode === 'development' &&
