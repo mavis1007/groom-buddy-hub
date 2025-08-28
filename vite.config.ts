@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => ({
     sourcemap: mode === 'development',
   },
   preview: {
-    port: 3000,
+    port: 8080,
     host: true,
   },
   plugins: [
