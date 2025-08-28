@@ -31,10 +31,10 @@ const Services = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
+    <section className="py-20 bg-background" role="region" aria-labelledby="services-heading">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 id="services-heading" className="text-3xl md:text-5xl font-bold text-foreground mb-4">
             Our Grooming Services
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
@@ -42,12 +42,16 @@ const Services = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8" role="list">
           {services.map((service, index) => (
-            <Card key={index} className={`relative bg-gradient-card border-0 shadow-card hover:shadow-hero transition-all duration-300 transform hover:-translate-y-2 ${service.popular ? 'ring-2 ring-primary/20' : ''}`}>
+            <Card 
+              key={index} 
+              className={`relative bg-gradient-card border-0 shadow-card hover:shadow-hero transition-all duration-300 transform hover:-translate-y-2 ${service.popular ? 'ring-2 ring-primary/20' : ''}`}
+              role="listitem"
+            >
               {service.popular && (
                 <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                  <Badge className="bg-gradient-secondary text-secondary-foreground px-4 py-1">
+                  <Badge className="bg-gradient-secondary text-secondary-foreground px-4 py-1" aria-label="Most popular service">
                     Most Popular
                   </Badge>
                 </div>
@@ -58,10 +62,10 @@ const Services = () => {
                   {service.title}
                 </CardTitle>
                 <div className="flex items-center justify-center gap-4">
-                  <div className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent">
+                  <div className="text-3xl font-bold bg-gradient-primary bg-clip-text text-transparent" aria-label={`Price ${service.price}`}>
                     {service.price}
                   </div>
-                  <div className="text-sm text-muted-foreground">
+                  <div className="text-sm text-muted-foreground" aria-label={`Duration ${service.duration}`}>
                     {service.duration}
                   </div>
                 </div>
@@ -72,10 +76,10 @@ const Services = () => {
                   {service.description}
                 </p>
                 
-                <ul className="space-y-3">
+                <ul className="space-y-3" role="list" aria-label="Service features">
                   {service.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-center gap-3">
-                      <div className="w-2 h-2 bg-gradient-primary rounded-full"></div>
+                    <li key={featureIndex} className="flex items-center gap-3" role="listitem">
+                      <div className="w-2 h-2 bg-gradient-primary rounded-full" aria-hidden="true"></div>
                       <span className="text-sm text-foreground">{feature}</span>
                     </li>
                   ))}
@@ -85,6 +89,7 @@ const Services = () => {
                   variant={service.popular ? "hero" : "default"} 
                   className="w-full"
                   size="lg"
+                  aria-label={`Book ${service.title} service for ${service.price}`}
                 >
                   Book This Service
                 </Button>
